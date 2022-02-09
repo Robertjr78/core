@@ -29,6 +29,7 @@ CowboyFactoryV3 : https://testnet.bscscan.com/address/0x8901efd04f263736d28d2342
 
 SwapFeeNFT 
 NFTSpecV1 : https://testnet.bscscan.com/address/0x58d1124f7fcfcbfc8b12a51ef011ca567486b0f9
+TransparentUpgradeableProxy : https://testnet.bscscan.com/address/0x33b52e5de291b6702cf19ec24aaeb55b8ec544bb
 
 
 BeefswapLottery
