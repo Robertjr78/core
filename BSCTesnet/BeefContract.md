@@ -39,6 +39,7 @@ Governance
 BeefswapVotes : https://testnet.bscscan.com/address/0x41d69008ffb75929c2bfd20a4d58dd8a3e8e046d
 Controler : https://testnet.bscscan.com/address/0x3e4932c97c5da66eb9f418cf735529211af6e979
 ProxyAdmin : https://testnet.bscscan.com/address/0x2d79dc7dcd5a83a36eb0a0f90fa75649d1647ced
+AdminUpgradeabilityProxy : https://testnet.bscscan.com/address/0x8bdbc0dab06a0b10a511f5e4746172aec8f3c59d
 
 
 
