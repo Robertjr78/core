@@ -27,6 +27,9 @@ CowboyMintingStation : https://testnet.bscscan.com/address/0x0a5fac20d83d4dfd590
 CowboyFactoryV2 : https://testnet.bscscan.com/address/0x196f825fe12b462ad926eff051536378320c9215
 CowboyFactoryV3 : https://testnet.bscscan.com/address/0x8901efd04f263736d28d23427c05071bd06f5c7b
 
+SwapFeeNFT 
+NFTSpecV1 : https://testnet.bscscan.com/address/0x58d1124f7fcfcbfc8b12a51ef011ca567486b0f9
+
 
 BeefswapLottery
 RandomNumberGenerator :  https://testnet.bscscan.com/address/0xf250c54142cb10554a404b65e79bd95014a5b5f4
