@@ -465,7 +465,7 @@ contract BeefswapVotes is Initializable {
    */
   function balanceOf(address account) public view returns (uint256) {
     (uint112 reserve0, uint112 reserve1, ) = acsBeefiPair.getReserves();
-    return acsBeef.balanceOf(account).mul(acsAcs.getPricePerFullShare()).div(1e18)
+    return acsBeef.balanceOf(account).mul(acsBeef.getPricePerFullShare()).div(1e18)
       .add(
         acsBeef.balanceOf(account).mul(acsBeef.getPricePerFullShare()).div(1e18).mul(reserve0).div(reserve1)
       );
