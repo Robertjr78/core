@@ -25,7 +25,7 @@ BeefswapProfil : https://testnet.bscscan.com/address/0x3a8a196015aec4309cec76feb
 BeefCowBoy NFT : https://testnet.bscscan.com/address/0x0926ae625322f2439089ffc5dbef517e6881963a
 CowboyMintingStation : https://testnet.bscscan.com/address/0x0a5fac20d83d4dfd59095780a96553031594e61e
 CowboyFactoryV2 : https://testnet.bscscan.com/address/0x196f825fe12b462ad926eff051536378320c9215
-CowboyFactoryV3 : 
+CowboyFactoryV3 : https://testnet.bscscan.com/address/0x8901efd04f263736d28d23427c05071bd06f5c7b
 
 
 BeefswapLottery
