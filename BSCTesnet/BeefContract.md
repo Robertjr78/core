@@ -2,9 +2,9 @@ New Smart Contract Beefswap on BSC Tesnet
 
 
 Utility Token
-BEEF Token : https://testnet.bscscan.com/token/0xc790f4b4c3eeb438c1442de4c3686d041753edd4
-BEER Token : https://testnet.bscscan.com/token/0x1ceffbee62dc57dc960b0116cb90b214695df87e
-Timelock : https://testnet.bscscan.com/address/0xa80aceb040b54b32b539aa06039fe3eca3f50fcb
+//BEEF Token : https://testnet.bscscan.com/token/0xc790f4b4c3eeb438c1442de4c3686d041753edd4
+//BEER Token : https://testnet.bscscan.com/token/0x1ceffbee62dc57dc960b0116cb90b214695df87e
+//Timelock : https://testnet.bscscan.com/address/0xa80aceb040b54b32b539aa06039fe3eca3f50fcb
 
 
 Beefswap Factory
