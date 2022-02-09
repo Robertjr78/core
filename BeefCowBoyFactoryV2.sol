@@ -2338,60 +2338,59 @@ contract ERC721 is
     ) internal virtual {}
 }
 
-// File: contracts/PancakeBunnies.sol
-
+// File: contracts/BeefCowBoy.sol
 pragma solidity ^0.6.0;
 
-contract PancakeBunnies is ERC721, Ownable {
+contract BeefCowBoy is ERC721, Ownable {
     using Counters for Counters.Counter;
 
-    // Map the number of tokens per bunnyId
-    mapping(uint8 => uint256) public bunnyCount;
+    // Map the number of tokens per cowboyId
+    mapping(uint8 => uint256) public cowboyCount;
 
-    // Map the number of tokens burnt per bunnyId
-    mapping(uint8 => uint256) public bunnyBurnCount;
+    // Map the number of tokens burnt per cowboyId
+    mapping(uint8 => uint256) public cowboyBurnCount;
 
     // Used for generating the tokenId of new NFT minted
     Counters.Counter private _tokenIds;
 
-    // Map the bunnyId for each tokenId
-    mapping(uint256 => uint8) private bunnyIds;
+    // Map the cowboyId for each tokenId
+    mapping(uint256 => uint8) private cowboyIds;
 
-    // Map the bunnyName for a tokenId
-    mapping(uint8 => string) private bunnyNames;
+    // Map the cowboyName for a tokenId
+    mapping(uint8 => string) private cowboyNames;
 
-    constructor(string memory _baseURI) public ERC721("Pancake Bunnies", "PB") {
+    constructor(string memory _baseURI) public ERC721("Beef CowBoy", "BCB") {
         _setBaseURI(_baseURI);
     }
 
     /**
-     * @dev Get bunnyId for a specific tokenId.
+     * @dev Get cowboyId for a specific tokenId.
      */
-    function getBunnyId(uint256 _tokenId) external view returns (uint8) {
-        return bunnyIds[_tokenId];
+    function getCowboyId(uint256 _tokenId) external view returns (uint8) {
+        return cowboyIds[_tokenId];
     }
 
     /**
-     * @dev Get the associated bunnyName for a specific bunnyId.
+     * @dev Get the associated cowboyName for a specific cowboyId.
      */
-    function getBunnyName(uint8 _bunnyId)
+    function getCowboyName(uint8 _cowboyId)
         external
         view
         returns (string memory)
     {
-        return bunnyNames[_bunnyId];
+        return cowboyNames[_cowboyId];
     }
 
     /**
-     * @dev Get the associated bunnyName for a unique tokenId.
+     * @dev Get the associated cowboyName for a unique tokenId.
      */
-    function getBunnyNameOfTokenId(uint256 _tokenId)
+    function getCowboyNameOfTokenId(uint256 _tokenId)
         external
         view
         returns (string memory)
     {
-        uint8 bunnyId = bunnyIds[_tokenId];
-        return bunnyNames[bunnyId];
+        uint8 cowboyId = cowboyIds[_tokenId];
+        return cowboyNames[cowboyId];
     }
 
     /**
@@ -2400,48 +2399,48 @@ contract PancakeBunnies is ERC721, Ownable {
     function mint(
         address _to,
         string calldata _tokenURI,
-        uint8 _bunnyId
+        uint8 _cowboyId
     ) external onlyOwner returns (uint256) {
         uint256 newId = _tokenIds.current();
         _tokenIds.increment();
-        bunnyIds[newId] = _bunnyId;
-        bunnyCount[_bunnyId] = bunnyCount[_bunnyId].add(1);
+        cowboyIds[newId] = _cowboyId;
+        cowboyCount[_cowboyId] = cowboyCount[_cowboyId].add(1);
         _mint(_to, newId);
         _setTokenURI(newId, _tokenURI);
         return newId;
     }
 
     /**
-     * @dev Set a unique name for each bunnyId. It is supposed to be called once.
+     * @dev Set a unique name for each cowboyId. It is supposed to be called once.
      */
-    function setBunnyName(uint8 _bunnyId, string calldata _name)
+    function setCowboyName(uint8 _cowboyId, string calldata _name)
         external
         onlyOwner
     {
-        bunnyNames[_bunnyId] = _name;
+        cowboyNames[_cowboyId] = _name;
     }
 
     /**
      * @dev Burn a NFT token. Callable by owner only.
      */
     function burn(uint256 _tokenId) external onlyOwner {
-        uint8 bunnyIdBurnt = bunnyIds[_tokenId];
-        bunnyCount[bunnyIdBurnt] = bunnyCount[bunnyIdBurnt].sub(1);
-        bunnyBurnCount[bunnyIdBurnt] = bunnyBurnCount[bunnyIdBurnt].add(1);
+        uint8 cowboyIdBurnt = cowboyIds[_tokenId];
+        cowboyCount[cowboyIdBurnt] = cowboyCount[cowboyIdBurnt].sub(1);
+        cowboyBurnCount[cowboyIdBurnt] = cowboyBurnCount[cowboyIdBurnt].add(1);
         _burn(_tokenId);
     }
 }
 
-// File: contracts/BunnyFactoryV2.sol
+// File: contracts/CowboyFactoryV2.sol
 
 pragma solidity ^0.6.12;
 
-contract BunnyFactoryV2 is Ownable {
+contract CowboyFactoryV2 is Ownable {
     using SafeMath for uint256;
     using SafeBEP20 for IBEP20;
 
-    PancakeBunnies public pancakeBunnies;
-    IBEP20 public cakeToken;
+    Beefcowboy public beefcowboy;
+    IBEP20 public beefToken;
 
     // end block number to get collectibles
     uint256 public endBlockNumber;
@@ -2449,29 +2448,29 @@ contract BunnyFactoryV2 is Ownable {
     // starting block
     uint256 public startBlockNumber;
 
-    // Number of CAKEs a user needs to pay to acquire a token
+    // Number of BEEFs a user needs to pay to acquire a token
     uint256 public tokenPrice;
 
-    // Map if address has already claimed a NFT
+    // Map if addrees has already claimed a NFT
     mapping(address => bool) public hasClaimed;
 
     // IPFS hash for new json
     string private ipfsHash;
 
     // number of total series (i.e. different visuals)
-    uint8 private constant numberBunnyIds = 10;
+    uint8 private constant numberCowboyIds = 10;
 
     // number of previous series (i.e. different visuals)
     uint8 private constant previousNumberBunnyIds = 5;
 
     // Map the token number to URI
-    mapping(uint8 => string) private bunnyIdURIs;
+    mapping(uint8 => string) private cowboyIdURIs;
 
     // Event to notify when NFT is successfully minted
-    event BunnyMint(
+    event CowboyMint(
         address indexed to,
         uint256 indexed tokenId,
-        uint8 indexed bunnyId
+        uint8 indexed cowboyId
     );
 
     /**
@@ -2479,15 +2478,15 @@ contract BunnyFactoryV2 is Ownable {
      * is defined as totalSupplyDistributed.
      */
     constructor(
-        PancakeBunnies _pancakeBunnies,
-        IBEP20 _cakeToken,
+        Beefcowboy _beefcowboy,
+        IBEP20 _beefToken,
         uint256 _tokenPrice,
         string memory _ipfsHash,
         uint256 _startBlockNumber,
         uint256 _endBlockNumber
     ) public {
-        pancakeBunnies = _pancakeBunnies;
-        cakeToken = _cakeToken;
+        beefcowboy = _beefcowboy;
+        beefToken = _beefToken;
         tokenPrice = _tokenPrice;
         ipfsHash = _ipfsHash;
         startBlockNumber = _startBlockNumber;
@@ -2495,38 +2494,38 @@ contract BunnyFactoryV2 is Ownable {
     }
 
     /**
-     * @dev Mint NFTs from the PancakeBunnies contract.
+     * @dev Mint NFTs from the Beefcowboy contract.
      * Users can specify what bunnyId they want to mint. Users can claim once.
-     * There is a limit on how many are distributed. It requires CAKE balance to be > 0.
+     * There is a limit on how many are distributed. It requires BEEF balance to be > 0.
      */
-    function mintNFT(uint8 _bunnyId) external {
+    function mintNFT(uint8 _cowboyId) external {
         // Check _msgSender() has not claimed
         require(!hasClaimed[_msgSender()], "Has claimed");
         // Check block time is not too late
         require(block.number > startBlockNumber, "too early");
         // Check block time is not too late
         require(block.number < endBlockNumber, "too late");
+        // Check that the _cowboyId is within boundary:
+        require(_cowboyId >= previousNumberCowboyIds, "cowboyId too low");
         // Check that the _bunnyId is within boundary:
-        require(_bunnyId >= previousNumberBunnyIds, "bunnyId too low");
-        // Check that the _bunnyId is within boundary:
-        require(_bunnyId < numberBunnyIds, "bunnyId too high");
+        require(_cowboyId < numberCowboyIds, "cowboyId too high");
 
         // Update that _msgSender() has claimed
         hasClaimed[_msgSender()] = true;
 
-        // Send CAKE tokens to this contract
-        cakeToken.safeTransferFrom(
+        // Send BEEF tokens to this contract
+        beefToken.safeTransferFrom(
             address(_msgSender()),
             address(this),
             tokenPrice
         );
 
-        string memory tokenURI = bunnyIdURIs[_bunnyId];
+        string memory tokenURI = cowboyIdURIs[_cowboyId];
 
         uint256 tokenId =
-            pancakeBunnies.mint(address(_msgSender()), tokenURI, _bunnyId);
+            beefcowboy.mint(address(_msgSender()), tokenURI, _cowboyId);
 
-        emit BunnyMint(_msgSender(), tokenId, _bunnyId);
+        emit CowboyMint(_msgSender(), tokenId, _cowboyId);
     }
 
     /**
@@ -2534,34 +2533,34 @@ contract BunnyFactoryV2 is Ownable {
      * to a new address.
      */
     function changeOwnershipNFTContract(address _newOwner) external onlyOwner {
-        pancakeBunnies.transferOwnership(_newOwner);
+        beefcowboy.transferOwnership(_newOwner);
     }
 
     /**
-     * @dev It transfers the CAKE tokens back to the chef address.
+     * @dev It transfers the BEEF tokens back to the chef address.
      * Only callable by the owner.
      */
     function claimFee(uint256 _amount) external onlyOwner {
-        cakeToken.safeTransfer(_msgSender(), _amount);
+        beefToken.safeTransfer(_msgSender(), _amount);
     }
 
     /**
-     * @dev Set up json extensions for bunnies 5-9
+     * @dev Set up json extensions for cowboy 5-9
      * Assign tokenURI to look for each bunnyId in the mint function
      * Only the owner can set it.
      */
     function setBunnyJson(
-        string calldata _bunnyId5Json,
-        string calldata _bunnyId6Json,
-        string calldata _bunnyId7Json,
-        string calldata _bunnyId8Json,
-        string calldata _bunnyId9Json
+        string calldata _cowboyId5Json,
+        string calldata _cowboyId6Json,
+        string calldata _cowboyId7Json,
+        string calldata _cowboyId8Json,
+        string calldata _cowboyId9Json
     ) external onlyOwner {
-        bunnyIdURIs[5] = string(abi.encodePacked(ipfsHash, _bunnyId5Json));
-        bunnyIdURIs[6] = string(abi.encodePacked(ipfsHash, _bunnyId6Json));
-        bunnyIdURIs[7] = string(abi.encodePacked(ipfsHash, _bunnyId7Json));
-        bunnyIdURIs[8] = string(abi.encodePacked(ipfsHash, _bunnyId8Json));
-        bunnyIdURIs[9] = string(abi.encodePacked(ipfsHash, _bunnyId9Json));
+        cowboyIdURIs[5] = string(abi.encodePacked(ipfsHash, _cowboyId5Json));
+        cowboyIdURIs[6] = string(abi.encodePacked(ipfsHash, _cowboyId6Json));
+        cowboyIdURIs[7] = string(abi.encodePacked(ipfsHash, _cowboyId7Json));
+        cowboyIdURIs[8] = string(abi.encodePacked(ipfsHash, _cowboyId8Json));
+        cowboyIdURIs[9] = string(abi.encodePacked(ipfsHash, _cowboyId9Json));
     }
 
     /**
@@ -2569,17 +2568,17 @@ contract BunnyFactoryV2 is Ownable {
      * Only the owner can set it.
      */
     function setBunnyNames(
-        string calldata _bunnyId5,
-        string calldata _bunnyId6,
-        string calldata _bunnyId7,
-        string calldata _bunnyId8,
-        string calldata _bunnyId9
+        string calldata _cowboyId5,
+        string calldata _cowboyId6,
+        string calldata _cowboyId7,
+        string calldata _cowboyId8,
+        string calldata _cowboyId9
     ) external onlyOwner {
-        pancakeBunnies.setBunnyName(5, _bunnyId5);
-        pancakeBunnies.setBunnyName(6, _bunnyId6);
-        pancakeBunnies.setBunnyName(7, _bunnyId7);
-        pancakeBunnies.setBunnyName(8, _bunnyId8);
-        pancakeBunnies.setBunnyName(9, _bunnyId9);
+        beefcowboy.setCowboyName(5, _cowboyId5);
+        beefcowboy.setCowboyName(6, _cowboyId6);
+        beefcowboy.setCowboyName(7, _cowboyId7);
+        beefcowboy.setCowboyName(8, _cowboyId8);
+        beefcowboy.setCowboyName(9, _cowboyId9);
     }
 
     /**
