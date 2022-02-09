@@ -1,5 +1,7 @@
-// File: @openzeppelin/contracts/GSN/Context.sol
 
+// SPDX-License-Identifier: MIT
+
+// File: @openzeppelin/contracts/GSN/Context.sol
 pragma solidity >=0.6.0 <0.8.0;
 
 /*
@@ -1805,7 +1807,7 @@ contract BeefCowBoy is ERC721, Ownable {
      * @dev Get cowboyId for a specific tokenId.
      */
     function getCowboyId(uint256 _tokenId) external view returns (uint8) {
-        return CowboyIds[_tokenId];
+        return cowboyIds[_tokenId];
     }
 
     /**
