@@ -37,6 +37,8 @@ BeefswapLottery : https://testnet.bscscan.com/address/0xf2863c4ffa513c9241e5acbc
 
 Governance
 BeefswapVotes : https://testnet.bscscan.com/address/0x41d69008ffb75929c2bfd20a4d58dd8a3e8e046d
+Controler : https://testnet.bscscan.com/address/0x3e4932c97c5da66eb9f418cf735529211af6e979
+
 
 
 
