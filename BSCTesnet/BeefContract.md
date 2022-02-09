@@ -35,3 +35,9 @@ BeefswapLottery
 RandomNumberGenerator :  https://testnet.bscscan.com/address/0xf250c54142cb10554a404b65e79bd95014a5b5f4
 BeefswapLottery : https://testnet.bscscan.com/address/0xf2863c4ffa513c9241e5acbc0a4d72fd50b90902
 
+Governance
+BeefswapVotes : https://testnet.bscscan.com/address/0x41d69008ffb75929c2bfd20a4d58dd8a3e8e046d
+
+
+
+
