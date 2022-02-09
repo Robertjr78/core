@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 // IERC165Upgradeable.sol
 
 pragma solidity ^0.8.0;
