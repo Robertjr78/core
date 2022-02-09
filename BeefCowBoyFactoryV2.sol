@@ -2435,7 +2435,7 @@ contract CowboyFactoryV2 is Ownable {
     using SafeMath for uint256;
     using SafeBEP20 for IBEP20;
 
-    Beefcowboy public beefcowboy;
+    BeefCowBoy public beefCowboy;
     IBEP20 public beefToken;
 
     // end block number to get collectibles
@@ -2447,7 +2447,7 @@ contract CowboyFactoryV2 is Ownable {
     // Number of BEEFs a user needs to pay to acquire a token
     uint256 public tokenPrice;
 
-    // Map if addrees has already claimed a NFT
+    // Map if address has already claimed a NFT
     mapping(address => bool) public hasClaimed;
 
     // IPFS hash for new json
@@ -2457,7 +2457,7 @@ contract CowboyFactoryV2 is Ownable {
     uint8 private constant numberCowboyIds = 10;
 
     // number of previous series (i.e. different visuals)
-    uint8 private constant previousNumberBunnyIds = 5;
+    uint8 private constant previousNumberCowboyIds = 5;
 
     // Map the token number to URI
     mapping(uint8 => string) private cowboyIdURIs;
@@ -2474,14 +2474,14 @@ contract CowboyFactoryV2 is Ownable {
      * is defined as totalSupplyDistributed.
      */
     constructor(
-        Beefcowboy _beefcowboy,
+        BeefCowBoy _beefCowboy,
         IBEP20 _beefToken,
         uint256 _tokenPrice,
         string memory _ipfsHash,
         uint256 _startBlockNumber,
         uint256 _endBlockNumber
     ) public {
-        beefcowboy = _beefcowboy;
+        beefCowboy = _beefCowboy;
         beefToken = _beefToken;
         tokenPrice = _tokenPrice;
         ipfsHash = _ipfsHash;
@@ -2490,8 +2490,8 @@ contract CowboyFactoryV2 is Ownable {
     }
 
     /**
-     * @dev Mint NFTs from the Beefcowboy contract.
-     * Users can specify what bunnyId they want to mint. Users can claim once.
+     * @dev Mint NFTs from the BeefCowboy contract.
+     * Users can specify what cowboyId they want to mint. Users can claim once.
      * There is a limit on how many are distributed. It requires BEEF balance to be > 0.
      */
     function mintNFT(uint8 _cowboyId) external {
@@ -2503,7 +2503,7 @@ contract CowboyFactoryV2 is Ownable {
         require(block.number < endBlockNumber, "too late");
         // Check that the _cowboyId is within boundary:
         require(_cowboyId >= previousNumberCowboyIds, "cowboyId too low");
-        // Check that the _bunnyId is within boundary:
+        // Check that the _cowboyId is within boundary:
         require(_cowboyId < numberCowboyIds, "cowboyId too high");
 
         // Update that _msgSender() has claimed
@@ -2519,7 +2519,7 @@ contract CowboyFactoryV2 is Ownable {
         string memory tokenURI = cowboyIdURIs[_cowboyId];
 
         uint256 tokenId =
-            beefcowboy.mint(address(_msgSender()), tokenURI, _cowboyId);
+            beefCowboy.mint(address(_msgSender()), tokenURI, _cowboyId);
 
         emit CowboyMint(_msgSender(), tokenId, _cowboyId);
     }
@@ -2529,7 +2529,7 @@ contract CowboyFactoryV2 is Ownable {
      * to a new address.
      */
     function changeOwnershipNFTContract(address _newOwner) external onlyOwner {
-        beefcowboy.transferOwnership(_newOwner);
+        beefCowboy.transferOwnership(_newOwner);
     }
 
     /**
@@ -2541,11 +2541,11 @@ contract CowboyFactoryV2 is Ownable {
     }
 
     /**
-     * @dev Set up json extensions for cowboy 5-9
-     * Assign tokenURI to look for each bunnyId in the mint function
+     * @dev Set up json extensions for cowboys 5-9
+     * Assign tokenURI to look for each cowboyId in the mint function
      * Only the owner can set it.
      */
-    function setBunnyJson(
+    function setCowboyJson(
         string calldata _cowboyId5Json,
         string calldata _cowboyId6Json,
         string calldata _cowboyId7Json,
@@ -2560,21 +2560,21 @@ contract CowboyFactoryV2 is Ownable {
     }
 
     /**
-     * @dev Set up names for bunnies 5-9
+     * @dev Set up names for cowboy 5-9
      * Only the owner can set it.
      */
-    function setBunnyNames(
+    function setCowboyNames(
         string calldata _cowboyId5,
         string calldata _cowboyId6,
         string calldata _cowboyId7,
         string calldata _cowboyId8,
         string calldata _cowboyId9
     ) external onlyOwner {
-        beefcowboy.setCowboyName(5, _cowboyId5);
-        beefcowboy.setCowboyName(6, _cowboyId6);
-        beefcowboy.setCowboyName(7, _cowboyId7);
-        beefcowboy.setCowboyName(8, _cowboyId8);
-        beefcowboy.setCowboyName(9, _cowboyId9);
+        beefCowboy.setCowboyName(5, _cowboyId5);
+        beefCowboy.setCowboyName(6, _cowboyId6);
+        beefCowboy.setCowboyName(7, _cowboyId7);
+        beefCowboy.setCowboyName(8, _cowboyId8);
+        beefCowboy.setCowboyName(9, _cowboyId9);
     }
 
     /**
