@@ -211,14 +211,14 @@ contract BeefswapNFT is Initializable, ERC721EnumerableUpgradeable, AccessContro
         require(to != address(0), "Address can not be zero");
         _lastTokenId +=1;
         uint tokenId = _lastTokenId;
-        _tokens[tokenId].robiBoost = _initialBeefBoost;
+        _tokens[tokenId].beefBoost = _initialBeefBoost;
         _tokens[tokenId].createTimestamp = block.timestamp;
         _tokens[tokenId].level = 1; //start from 1 level
         _safeMint(to, tokenId);
     }
 
     //BNF-02, SCN-01, SFR-02
-    function launchpadMint(address to, uint level, uint robiBoost) public onlyRole(LAUNCHPAD_TOKEN_MINTER) nonReentrant {
+    function launchpadMint(address to, uint level, uint beefBoost) public onlyRole(LAUNCHPAD_TOKEN_MINTER) nonReentrant {
         require(to != address(0), "Address can not be zero");
         require(_bbTable[level] >= beefBoost, "BB Value out of limit");
         _lastTokenId +=1;
@@ -235,8 +235,8 @@ contract BeefswapNFT is Initializable, ERC721EnumerableUpgradeable, AccessContro
         require(_levelTable[currentLevel] !=0, "This level not upgradable");
         uint numbersOfToken = _levelTable[currentLevel];
         require(numbersOfToken == tokenId.length, "Wrong numbers of tokens received");
-        uint neededRb = numbersOfToken * _rbTable[currentLevel];
-        uint cumulatedRb = 0;
+        uint neededBb = numbersOfToken * _bbTable[currentLevel];
+        uint cumulatedBb = 0;
         for(uint i = 0; i < numbersOfToken; i++){
             Token memory token = _tokens[tokenId[i]]; //safe gas
             require(token.level == currentLevel, "Token not from this level");
