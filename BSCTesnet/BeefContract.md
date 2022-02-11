@@ -41,6 +41,8 @@ BeefswapVotes : https://testnet.bscscan.com/address/0x41d69008ffb75929c2bfd20a4d
 Controler : https://testnet.bscscan.com/address/0x3e4932c97c5da66eb9f418cf735529211af6e979
 ProxyAdmin : https://testnet.bscscan.com/address/0x2d79dc7dcd5a83a36eb0a0f90fa75649d1647ced
 AdminUpgradeabilityProxy : https://testnet.bscscan.com/address/0x8bdbc0dab06a0b10a511f5e4746172aec8f3c59d
+GnosisSafeL2 : https://testnet.bscscan.com/address/0xb008510df29a2b5d3c41d098d0c1fc6e9b7d074b
+GnosisSafeProxy : https://testnet.bscscan.com/address/0xfe04baaf90986a2a75fa3d63cd9e9260d5a3d05b
 
 
 
