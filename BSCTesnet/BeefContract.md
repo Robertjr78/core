@@ -20,6 +20,13 @@ MasterChef : https://testnet.bscscan.com/address/0x2bb6f97d16b176796be4a104bed10
 BeefVault : https://testnet.bscscan.com/address/0xf009a690202f3b0f96bccef0ba7c3fc703466ed4
 
 
+
+Initial Beef Offering :
+IBODeployer : https://testnet.bscscan.com/address/0x92f63ecedbf279b4cfec07d89e36efacac2b0609
+IBOPool : https://testnet.bscscan.com/address/0x70b71fabde8b63d9ba137a4afb3d486591ed4044
+
+
+
 BeefCowBoy NFT 
 BeefswapProfil : https://testnet.bscscan.com/address/0x3a8a196015aec4309cec76feb3f3c233c38f895d
 BeefCowBoy NFT : https://testnet.bscscan.com/address/0x0926ae625322f2439089ffc5dbef517e6881963a
