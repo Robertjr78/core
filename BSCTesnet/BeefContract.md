@@ -14,7 +14,7 @@ Beefswap Factory
 Beefswap Factory : https://testnet.bscscan.com/address/0xd1423906706105003ba7df168bf9b92ca9fb8e28
 Beefswap Router : https://testnet.bscscan.com/address/0x0c8807615a1ebba61aa47e43a4531f784332bb72
 Oracle : https://testnet.bscscan.com/address/0x91f617835888266b481ae6d51f3e15ee9a05a284
-Beefswap Pair : 
+Beefswap Pair : https://testnet.bscscan.com/address/0x384e171b9ac8ec4774f1468f692c28b20ed89ed7
 SwapFeeReward : https://testnet.bscscan.com/address/0xe9fe834f7ba840baaa5ef3542dfd1879d70b08be
 
 
