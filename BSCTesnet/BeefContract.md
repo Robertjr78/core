@@ -22,8 +22,9 @@ BeefVault : https://testnet.bscscan.com/address/0xf009a690202f3b0f96bccef0ba7c3f
 
 
 Initial Beef Offering :
-IBODeployer : https://testnet.bscscan.com/address/0x92f63ecedbf279b4cfec07d89e36efacac2b0609
+IBODeployer : https://testnet.bscscan.com/address/0x0e294e82274f69f379c05bb9f56f0cff55acb3a6
 IBOPool : https://testnet.bscscan.com/address/0x70b71fabde8b63d9ba137a4afb3d486591ed4044
+IBOInitializable : https://testnet.bscscan.com/address/0x28f1c230350d90ffe7616c567b24a99c72f931a1
 
 
 
