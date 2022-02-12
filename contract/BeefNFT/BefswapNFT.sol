@@ -1679,7 +1679,7 @@ contract BeefswapNFT is Initializable, ERC721EnumerableUpgradeable, AccessContro
         stakeFreeze = _tokens[tokenId].stakeFreeze;
     }
 
-    function setBBTable(uint[7] calldata rbTable) external onlyRole(DEFAULT_ADMIN_ROLE) {
+    function setBBTable(uint[7] calldata bbTable) external onlyRole(DEFAULT_ADMIN_ROLE) {
         _bbTable = bbTable;
     }
 
@@ -1952,7 +1952,7 @@ contract BeefswapNFT is Initializable, ERC721EnumerableUpgradeable, AccessContro
         _bigBoostTotalAmounts[day] -= amount;
     }
 
-    function _gainBB(uint tokenId, uint rb) private {
+    function _gainBB(uint tokenId, uint bb) private {
         require(_exists(tokenId), "Token does not exist");
         require(_tokens[tokenId].stakeFreeze == false, "Token is staked");
         Token storage token = _tokens[tokenId];
