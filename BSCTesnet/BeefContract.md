@@ -30,13 +30,14 @@ IBOPool : https://testnet.bscscan.com/address/0x70b71fabde8b63d9ba137a4afb3d4865
 IBOInitializable : https://testnet.bscscan.com/address/0x28f1c230350d90ffe7616c567b24a99c72f931a1
 
 
-
 BeefCowBoy NFT 
 BeefswapProfil : https://testnet.bscscan.com/address/0x3a8a196015aec4309cec76feb3f3c233c38f895d
 BeefCowBoy NFT : https://testnet.bscscan.com/address/0x0926ae625322f2439089ffc5dbef517e6881963a
 CowboyMintingStation : https://testnet.bscscan.com/address/0x0a5fac20d83d4dfd59095780a96553031594e61e
 CowboyFactoryV2 : https://testnet.bscscan.com/address/0x196f825fe12b462ad926eff051536378320c9215
 CowboyFactoryV3 : https://testnet.bscscan.com/address/0x8901efd04f263736d28d23427c05071bd06f5c7b
+BeefswapNFT : https://testnet.bscscan.com/address/0x4071f63e2f3ea406b2b037f47a77719ec8e51a2b#code
+
 
 SwapFeeNFT 
 NFTSpecV1 : https://testnet.bscscan.com/address/0x58d1124f7fcfcbfc8b12a51ef011ca567486b0f9
