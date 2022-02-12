@@ -42,6 +42,7 @@ NFT MARKET :
 BeefswapNFT : https://testnet.bscscan.com/address/0x4071f63e2f3ea406b2b037f47a77719ec8e51a2b
 SwapFeeRewardWithBB : https://testnet.bscscan.com/address/0x94403450e3bce70b8d23652585b9b3fbfa6a6193
 MARKET : https://testnet.bscscan.com/address/0x5c536630e83c8e064bdd0184c655030998d4ab9e
+Auction : https://testnet.bscscan.com/address/0x0f06810b2584c1a5fe25d59301bc6dbbd17cc601
 SmartChefNFT : https://testnet.bscscan.com/address/0xe8d11d0f4ffd499c88718716bf07daaf2f77395a
 
 
