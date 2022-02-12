@@ -1,7 +1,192 @@
-// SPDX-License-Identifier: MIT
+pragma solidity ^0.6.6;
+contract Ownable {
+    address private _owner;
+
+    constructor () internal {
+        _owner = msg.sender;
+        emit OwnershipTransferred(address(0), _owner);
+    }
+
+    function owner() public view returns (address) {
+        return _owner;
+    }
+
+    function isOwner(address account) public view returns (bool) {
+        return account == _owner;
+    }
+
+    function renounceOwnership() public onlyOwner {
+        emit OwnershipTransferred(_owner, address(0));
+        _owner = address(0);
+    }
+
+    function _transferOwnership(address newOwner) internal {
+        require(newOwner != address(0), "Ownable: new owner is the zero address");
+        emit OwnershipTransferred(_owner, newOwner);
+        _owner = newOwner;
+    }
+
+    function transferOwnership(address newOwner) public onlyOwner {
+        _transferOwnership(newOwner);
+    }
+
+
+    modifier onlyOwner() {
+        require(isOwner(msg.sender), "Ownable: caller is not the owner");
+        _;
+    }
+
+    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
+}
+
 
 pragma solidity ^0.6.6;
+library SafeMath {
+    uint256 constant WAD = 10 ** 18;
+    uint256 constant RAY = 10 ** 27;
 
+    function wad() public pure returns (uint256) {
+        return WAD;
+    }
+
+    function ray() public pure returns (uint256) {
+        return RAY;
+    }
+
+    function add(uint256 a, uint256 b) internal pure returns (uint256) {
+        uint256 c = a + b;
+        require(c >= a, "SafeMath: addition overflow");
+
+        return c;
+    }
+
+    function sub(uint256 a, uint256 b) internal pure returns (uint256) {
+        return sub(a, b, "SafeMath: subtraction overflow");
+    }
+
+    function sub(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {
+        require(b <= a, errorMessage);
+        uint256 c = a - b;
+
+        return c;
+    }
+
+    function mul(uint256 a, uint256 b) internal pure returns (uint256) {
+        // Gas optimization: this is cheaper than requiring 'a' not being zero, but the
+        // benefit is lost if 'b' is also tested.
+        // See: https://github.com/OpenZeppelin/openzeppelin-contracts/pull/522
+        if (a == 0) {
+            return 0;
+        }
+
+        uint256 c = a * b;
+        require(c / a == b, "SafeMath: multiplication overflow");
+
+        return c;
+    }
+
+    function div(uint256 a, uint256 b) internal pure returns (uint256) {
+        return div(a, b, "SafeMath: division by zero");
+    }
+
+    function div(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {
+        // Solidity only automatically asserts when dividing by 0
+        require(b > 0, errorMessage);
+        uint256 c = a / b;
+        // assert(a == b * c + a % b); // There is no case in which this doesn't hold
+
+        return c;
+    }
+
+    function mod(uint256 a, uint256 b) internal pure returns (uint256) {
+        return mod(a, b, "SafeMath: modulo by zero");
+    }
+
+    function mod(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {
+        require(b != 0, errorMessage);
+        return a % b;
+    }
+
+    function min(uint256 a, uint256 b) internal pure returns (uint256) {
+        return a <= b ? a : b;
+    }
+
+    function max(uint256 a, uint256 b) internal pure returns (uint256) {
+        return a >= b ? a : b;
+    }
+
+    function sqrt(uint256 a) internal pure returns (uint256 b) {
+        if (a > 3) {
+            b = a;
+            uint256 x = a / 2 + 1;
+            while (x < b) {
+                b = x;
+                x = (a / x + x) / 2;
+            }
+        } else if (a != 0) {
+            b = 1;
+        }
+    }
+
+    function wmul(uint256 a, uint256 b) internal pure returns (uint256) {
+        return mul(a, b) / WAD;
+    }
+
+    function wmulRound(uint256 a, uint256 b) internal pure returns (uint256) {
+        return add(mul(a, b), WAD / 2) / WAD;
+    }
+
+    function rmul(uint256 a, uint256 b) internal pure returns (uint256) {
+        return mul(a, b) / RAY;
+    }
+
+    function rmulRound(uint256 a, uint256 b) internal pure returns (uint256) {
+        return add(mul(a, b), RAY / 2) / RAY;
+    }
+
+    function wdiv(uint256 a, uint256 b) internal pure returns (uint256) {
+        return div(mul(a, WAD), b);
+    }
+
+    function wdivRound(uint256 a, uint256 b) internal pure returns (uint256) {
+        return add(mul(a, WAD), b / 2) / b;
+    }
+
+    function rdiv(uint256 a, uint256 b) internal pure returns (uint256) {
+        return div(mul(a, RAY), b);
+    }
+
+    function rdivRound(uint256 a, uint256 b) internal pure returns (uint256) {
+        return add(mul(a, RAY), b / 2) / b;
+    }
+
+    function wpow(uint256 x, uint256 n) internal pure returns (uint256) {
+        uint256 result = WAD;
+        while (n > 0) {
+            if (n % 2 != 0) {
+                result = wmul(result, x);
+            }
+            x = wmul(x, x);
+            n /= 2;
+        }
+        return result;
+    }
+
+    function rpow(uint256 x, uint256 n) internal pure returns (uint256) {
+        uint256 result = RAY;
+        while (n > 0) {
+            if (n % 2 != 0) {
+                result = rmul(result, x);
+            }
+            x = rmul(x, x);
+            n /= 2;
+        }
+        return result;
+    }
+}
+
+
+pragma solidity ^0.6.6;
 library EnumerableSet {
     // To implement this library for multiple types with as little code
     // repetition as possible, we write it in terms of a generic Set type with
@@ -273,199 +458,6 @@ library EnumerableSet {
     }
 }
 
-pragma solidity ^0.6.6;
-library SafeMath {
-    uint256 constant WAD = 10 ** 18;
-    uint256 constant RAY = 10 ** 27;
-
-    function wad() public pure returns (uint256) {
-        return WAD;
-    }
-
-    function ray() public pure returns (uint256) {
-        return RAY;
-    }
-
-    function add(uint256 a, uint256 b) internal pure returns (uint256) {
-        uint256 c = a + b;
-        require(c >= a, "SafeMath: addition overflow");
-
-        return c;
-    }
-
-    function sub(uint256 a, uint256 b) internal pure returns (uint256) {
-        return sub(a, b, "SafeMath: subtraction overflow");
-    }
-
-    function sub(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {
-        require(b <= a, errorMessage);
-        uint256 c = a - b;
-
-        return c;
-    }
-
-    function mul(uint256 a, uint256 b) internal pure returns (uint256) {
-        // Gas optimization: this is cheaper than requiring 'a' not being zero, but the
-        // benefit is lost if 'b' is also tested.
-        // See: https://github.com/OpenZeppelin/openzeppelin-contracts/pull/522
-        if (a == 0) {
-            return 0;
-        }
-
-        uint256 c = a * b;
-        require(c / a == b, "SafeMath: multiplication overflow");
-
-        return c;
-    }
-
-    function div(uint256 a, uint256 b) internal pure returns (uint256) {
-        return div(a, b, "SafeMath: division by zero");
-    }
-
-    function div(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {
-        // Solidity only automatically asserts when dividing by 0
-        require(b > 0, errorMessage);
-        uint256 c = a / b;
-        // assert(a == b * c + a % b); // There is no case in which this doesn't hold
-
-        return c;
-    }
-
-    function mod(uint256 a, uint256 b) internal pure returns (uint256) {
-        return mod(a, b, "SafeMath: modulo by zero");
-    }
-
-    function mod(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {
-        require(b != 0, errorMessage);
-        return a % b;
-    }
-
-    function min(uint256 a, uint256 b) internal pure returns (uint256) {
-        return a <= b ? a : b;
-    }
-
-    function max(uint256 a, uint256 b) internal pure returns (uint256) {
-        return a >= b ? a : b;
-    }
-
-    function sqrt(uint256 a) internal pure returns (uint256 b) {
-        if (a > 3) {
-            b = a;
-            uint256 x = a / 2 + 1;
-            while (x < b) {
-                b = x;
-                x = (a / x + x) / 2;
-            }
-        } else if (a != 0) {
-            b = 1;
-        }
-    }
-
-    function wmul(uint256 a, uint256 b) internal pure returns (uint256) {
-        return mul(a, b) / WAD;
-    }
-
-    function wmulRound(uint256 a, uint256 b) internal pure returns (uint256) {
-        return add(mul(a, b), WAD / 2) / WAD;
-    }
-
-    function rmul(uint256 a, uint256 b) internal pure returns (uint256) {
-        return mul(a, b) / RAY;
-    }
-
-    function rmulRound(uint256 a, uint256 b) internal pure returns (uint256) {
-        return add(mul(a, b), RAY / 2) / RAY;
-    }
-
-    function wdiv(uint256 a, uint256 b) internal pure returns (uint256) {
-        return div(mul(a, WAD), b);
-    }
-
-    function wdivRound(uint256 a, uint256 b) internal pure returns (uint256) {
-        return add(mul(a, WAD), b / 2) / b;
-    }
-
-    function rdiv(uint256 a, uint256 b) internal pure returns (uint256) {
-        return div(mul(a, RAY), b);
-    }
-
-    function rdivRound(uint256 a, uint256 b) internal pure returns (uint256) {
-        return add(mul(a, RAY), b / 2) / b;
-    }
-
-    function wpow(uint256 x, uint256 n) internal pure returns (uint256) {
-        uint256 result = WAD;
-        while (n > 0) {
-            if (n % 2 != 0) {
-                result = wmul(result, x);
-            }
-            x = wmul(x, x);
-            n /= 2;
-        }
-        return result;
-    }
-
-    function rpow(uint256 x, uint256 n) internal pure returns (uint256) {
-        uint256 result = RAY;
-        while (n > 0) {
-            if (n % 2 != 0) {
-                result = rmul(result, x);
-            }
-            x = rmul(x, x);
-            n /= 2;
-        }
-        return result;
-    }
-}
-
-
-pragma solidity ^0.6.6;
-contract Ownable {
-    address private _owner;
-
-    constructor () internal {
-        _owner = msg.sender;
-        emit OwnershipTransferred(address(0), _owner);
-    }
-
-    function owner() public view returns (address) {
-        return _owner;
-    }
-
-    function isOwner(address account) public view returns (bool) {
-        return account == _owner;
-    }
-
-    function renounceOwnership() public onlyOwner {
-        emit OwnershipTransferred(_owner, address(0));
-        _owner = address(0);
-    }
-
-    function _transferOwnership(address newOwner) internal {
-        require(newOwner != address(0), "Ownable: new owner is the zero address");
-        emit OwnershipTransferred(_owner, newOwner);
-        _owner = newOwner;
-    }
-
-    function transferOwnership(address newOwner) public onlyOwner {
-        _transferOwnership(newOwner);
-    }
-
-
-    modifier onlyOwner() {
-        require(isOwner(msg.sender), "Ownable: caller is not the owner");
-        _;
-    }
-
-    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
-}
-
-
-pragma solidity ^0.6.6;
-interface IOracle {
-    function consult(address tokenIn, uint amountIn, address tokenOut) external view returns (uint amountOut);
-}
-
 
 pragma solidity ^0.6.6;
 interface IERC20 {
@@ -493,6 +485,10 @@ interface IERC20 {
 
 
 pragma solidity ^0.6.6;
+interface IOracle {
+    function consult(address tokenIn, uint amountIn, address tokenOut) external view returns (uint amountOut);
+}
+
 
 interface IBeefswapFactory {
     event PairCreated(address indexed token0, address indexed token1, address pair, uint);
@@ -599,17 +595,17 @@ interface IBeefswapPair {
     function setDevFee(uint32) external;
 }
 
-interface IBEEFToken is IERC20 {
+interface IBeefToken is IERC20 {
     function mint(address to, uint256 amount) external returns (bool);
     function transfer(address recipient, uint256 amount) external override returns (bool);
 }
 
 interface IBeefswapNFT {
-    function accrueRB(address user, uint amount) external;
+    function accrueBB(address user, uint amount) external;
     function tokenFreeze(uint tokenId) external;
     function tokenUnfreeze(uint tokenId) external;
-    function getRB(uint tokenId) external view returns(uint);
-    function getInfoForStaking(uint tokenId) external view returns(address tokenOwner, bool stakeFreeze, uint robiBoost);
+    function getBB(uint tokenId) external view returns(uint);
+    function getInfoForStaking(uint tokenId) external view returns(address tokenOwner, bool stakeFreeze, uint bigBoost);
 }
 
 abstract contract ReentrancyGuard {
@@ -630,7 +626,6 @@ abstract contract ReentrancyGuard {
     }
 }
 
-pragma solidity ^0.6.6;
 
 contract SwapFeeRewardWithBB is Ownable, ReentrancyGuard {
     using SafeMath for uint256;
@@ -650,10 +645,10 @@ contract SwapFeeRewardWithBB is Ownable, ReentrancyGuard {
     uint public currentPhaseBB = 1;
     uint256 public totalMined = 0;
     uint public totalAccruedBB = 0;
-    uint public bbWagerOnSwap = 1500; //Wager of RB
+    uint public bbWagerOnSwap = 1500; //Wager of BB
     uint public bbPercentMarket = 10000; // (div 10000)
     uint public bbPercentAuction = 10000; // (div 10000)
-    IBEEFToken public beefToken;
+    IBeefToken public beefToken;
     IOracle public oracle;
     IBeefswapNFT public beefswapNFT;
     address public targetToken;
@@ -707,7 +702,7 @@ contract SwapFeeRewardWithBB is Ownable, ReentrancyGuard {
         address _factory,
         address _router,
         bytes32 _INIT_CODE_HASH,
-        IBEEFToken _beefToken,
+        IBeefToken _beefToken,
         IOracle _Oracle,
         IBeefswapNFT _beefswapNFT,
         address _targetToken,
@@ -733,9 +728,9 @@ contract SwapFeeRewardWithBB is Ownable, ReentrancyGuard {
     }
 
     function sortTokens(address tokenA, address tokenB) public pure returns (address token0, address token1) {
-        require(tokenA != tokenB, "BeefswapSwapFactory: IDENTICAL_ADDRESSES");
+        require(tokenA != tokenB, "BeefswapFactory: IDENTICAL_ADDRESSES");
         (token0, token1) = tokenA < tokenB ? (tokenA, tokenB) : (tokenB, tokenA);
-        require(token0 != address(0), "BeefswapSwapFactory: ZERO_ADDRESS");
+        require(token0 != address(0), "BeefswapFactory: ZERO_ADDRESS");
     }
 
     function pairFor(address tokenA, address tokenB) public view returns (address pair) {
@@ -751,7 +746,6 @@ contract SwapFeeRewardWithBB is Ownable, ReentrancyGuard {
     function getSwapFee(address tokenA, address tokenB) internal view returns (uint swapFee) {
         //SFR-05
         swapFee = uint(1000).sub(IBeefswapPair(pairFor(tokenA, tokenB)).swapFee());
-        //        swapFee = uint(10000).sub(10); //TODO del in prod!!!
     }
 
     function setPhase(uint _newPhase) public onlyOwner returns (bool){
