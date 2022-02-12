@@ -37,14 +37,16 @@ CowboyMintingStation : https://testnet.bscscan.com/address/0x0a5fac20d83d4dfd590
 CowboyFactoryV2 : https://testnet.bscscan.com/address/0x196f825fe12b462ad926eff051536378320c9215
 CowboyFactoryV3 : https://testnet.bscscan.com/address/0x8901efd04f263736d28d23427c05071bd06f5c7b
 
+
 NFT MARKET :
 BeefswapNFT : https://testnet.bscscan.com/address/0x4071f63e2f3ea406b2b037f47a77719ec8e51a2b
+SwapFeeRewardWithBB : https://testnet.bscscan.com/address/0x94403450e3bce70b8d23652585b9b3fbfa6a6193
 MARKET : https://testnet.bscscan.com/address/0x5c536630e83c8e064bdd0184c655030998d4ab9e
 SmartChefNFT : https://testnet.bscscan.com/address/0xe8d11d0f4ffd499c88718716bf07daaf2f77395a
 
 
 
-SwapFeeNFT 
+Boost NFT
 NFTSpecV1 : https://testnet.bscscan.com/address/0x58d1124f7fcfcbfc8b12a51ef011ca567486b0f9
 TransparentUpgradeableProxy : https://testnet.bscscan.com/address/0x33b52e5de291b6702cf19ec24aaeb55b8ec544bb
 
