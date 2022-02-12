@@ -36,7 +36,11 @@ BeefCowBoy NFT : https://testnet.bscscan.com/address/0x0926ae625322f2439089ffc5d
 CowboyMintingStation : https://testnet.bscscan.com/address/0x0a5fac20d83d4dfd59095780a96553031594e61e
 CowboyFactoryV2 : https://testnet.bscscan.com/address/0x196f825fe12b462ad926eff051536378320c9215
 CowboyFactoryV3 : https://testnet.bscscan.com/address/0x8901efd04f263736d28d23427c05071bd06f5c7b
-BeefswapNFT : https://testnet.bscscan.com/address/0x4071f63e2f3ea406b2b037f47a77719ec8e51a2b#code
+BeefswapNFT : https://testnet.bscscan.com/address/0x4071f63e2f3ea406b2b037f47a77719ec8e51a2b
+
+
+NFT MARKET :
+MARKET : https://testnet.bscscan.com/address/0x5c536630e83c8e064bdd0184c655030998d4ab9e
 
 
 SwapFeeNFT 
