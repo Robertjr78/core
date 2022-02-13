@@ -46,6 +46,7 @@ SwapFeeRewardWithBB : https://testnet.bscscan.com/address/0x94403450e3bce70b8d23
 MARKET : https://testnet.bscscan.com/address/0x5c536630e83c8e064bdd0184c655030998d4ab9e
 Auction : https://testnet.bscscan.com/address/0x0f06810b2584c1a5fe25d59301bc6dbbd17cc601
 SmartChefNFT : https://testnet.bscscan.com/address/0xe8d11d0f4ffd499c88718716bf07daaf2f77395a
+LaunchpadNFT : https://testnet.bscscan.com/address/0x37ab59fd44f2b16687747f955e24468a3c716c0f
 
 
 
