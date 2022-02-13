@@ -10,7 +10,7 @@ ST20TOKEN : https://testnet.bscscan.com/token/0xb7eb60d3ca2d34b9eac7da1da281cd4e
 Timelock : https://testnet.bscscan.com/address/0xa80aceb040b54b32b539aa06039fe3eca3f50fcb
 
 
-Beefswap Factory
+EXCHANGES
 Beefswap Factory : https://testnet.bscscan.com/address/0xd1423906706105003ba7df168bf9b92ca9fb8e28
 Beefswap Router : https://testnet.bscscan.com/address/0x0c8807615a1ebba61aa47e43a4531f784332bb72
 Oracle : https://testnet.bscscan.com/address/0x91f617835888266b481ae6d51f3e15ee9a05a284
@@ -18,9 +18,10 @@ Beefswap Pair : https://testnet.bscscan.com/address/0x384e171b9ac8ec4774f1468f69
 SwapFeeReward : https://testnet.bscscan.com/address/0xe9fe834f7ba840baaa5ef3542dfd1879d70b08be
 
 
-MasterChef
+FARM, POOLS and BARS
 MasterChef : https://testnet.bscscan.com/address/0x2bb6f97d16b176796be4a104bed10634a93726bf
 BeefVault : https://testnet.bscscan.com/address/0xf009a690202f3b0f96bccef0ba7c3fc703466ed4
+SmartChef : https://testnet.bscscan.com/address/0xa527eda964fa843a105fbc3e007b01f145e21fdc
 
 
 
