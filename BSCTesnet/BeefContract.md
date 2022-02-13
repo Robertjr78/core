@@ -22,6 +22,7 @@ FARM, POOLS and BARS
 MasterChef : https://testnet.bscscan.com/address/0x2bb6f97d16b176796be4a104bed10634a93726bf
 BeefVault : https://testnet.bscscan.com/address/0xf009a690202f3b0f96bccef0ba7c3fc703466ed4
 SmartChef : https://testnet.bscscan.com/address/0xa527eda964fa843a105fbc3e007b01f145e21fdc
+AutoBeef180 : https://testnet.bscscan.com/address/0xe9c8a661c64a8403a0e450e6c631e52342e6eb26
 
 
 
