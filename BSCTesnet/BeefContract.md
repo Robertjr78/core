@@ -29,7 +29,7 @@ AutoBeef180 : https://testnet.bscscan.com/address/0xe9c8a661c64a8403a0e450e6c631
 Initial Beef Offering :
 IBODeployer : https://testnet.bscscan.com/address/0x0e294e82274f69f379c05bb9f56f0cff55acb3a6
 IBOPool : https://testnet.bscscan.com/address/0x70b71fabde8b63d9ba137a4afb3d486591ed4044
-IBOInitializable : https://testnet.bscscan.com/address/0x28f1c230350d90ffe7616c567b24a99c72f931a1
+IBOInitializable : https://testnet.bscscan.com/address/0x8242bae26add4e3289490006ec1e18aa9c56e43a
 
 
 BeefCowBoy NFT 
