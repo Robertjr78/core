@@ -42,6 +42,7 @@ CowboyFactoryV3 : https://testnet.bscscan.com/address/0x8901efd04f263736d28d2342
 
 NFT MARKET :
 BeefswapNFT : https://testnet.bscscan.com/address/0x4071f63e2f3ea406b2b037f47a77719ec8e51a2b
+Beefswap Squad NFT (BSN) : https://testnet.bscscan.com/address/0x45c5292c411b3828524c6ba53c4b76357a52bc6e
 SwapFeeRewardWithBB : https://testnet.bscscan.com/address/0x94403450e3bce70b8d23652585b9b3fbfa6a6193
 MARKET : https://testnet.bscscan.com/address/0x5c536630e83c8e064bdd0184c655030998d4ab9e
 Auction : https://testnet.bscscan.com/address/0x0f06810b2584c1a5fe25d59301bc6dbbd17cc601
