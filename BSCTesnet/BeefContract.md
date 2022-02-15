@@ -30,6 +30,7 @@ Initial Beef Offering :
 IBODeployer : https://testnet.bscscan.com/address/0x0e294e82274f69f379c05bb9f56f0cff55acb3a6
 IBOPool : https://testnet.bscscan.com/address/0x70b71fabde8b63d9ba137a4afb3d486591ed4044
 IBOInitializable : https://testnet.bscscan.com/address/0x8242bae26add4e3289490006ec1e18aa9c56e43a
+PointCenterIBO : https://testnet.bscscan.com/address/0x4070ed308e364bd081098a96b6415b35649c0465
 
 
 BeefCowBoy NFT 
