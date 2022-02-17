@@ -68,6 +68,7 @@ ProxyAdmin : https://testnet.bscscan.com/address/0x2d79dc7dcd5a83a36eb0a0f90fa75
 AdminUpgradeabilityProxy : https://testnet.bscscan.com/address/0x8bdbc0dab06a0b10a511f5e4746172aec8f3c59d
 GnosisSafeL2 : https://testnet.bscscan.com/address/0xb008510df29a2b5d3c41d098d0c1fc6e9b7d074b
 GnosisSafeProxy : https://testnet.bscscan.com/address/0xfe04baaf90986a2a75fa3d63cd9e9260d5a3d05b
+BeefswapTreasury : https://testnet.bscscan.com/address/0x3ff38f061027691313c1dc826e06ffb0fb6db05e
 
 
 
